@@ -1,39 +1,80 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# Awesome Location Picker
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages).
+A powerful and easy-to-use Flutter widget that lets users pick a **Country**, **State**, and **City** with cascading dropdowns.  
+Perfect for apps requiring detailed location input with smooth user experience.
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages).
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+---
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+- Select from a list of countries with emoji flags
+- Automatically load states/provinces when a country is selected
+- Automatically load cities when a state is selected
+- Supports inline (single row) or stacked (column) dropdown layouts
+- Customizable text styles for dropdown items
+- Provides callbacks to get selected values at every change
+- Loading indicators during data fetch
 
-## Getting started
+---
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+## Installation
 
-## Usage
+Add this package to your `pubspec.yaml` dependencies:
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+```yaml
+dependencies:
+  awesome_location_picker: ^1.0.0
 
-```dart
-const like = 'sample';
-```
 
-## Additional information
+import 'package:flutter/material.dart';
+import 'package:awesome_location_picker/awesome_location_picker.dart';
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Awesome Location Picker Demo',
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Location Picker Example'),
+        ),
+        body: const LocationPickerDemo(),
+      ),
+    );
+  }
+}
+
+class LocationPickerDemo extends StatefulWidget {
+  const LocationPickerDemo({super.key});
+
+  @override
+  State<LocationPickerDemo> createState() => _LocationPickerDemoState();
+}
+
+class _LocationPickerDemoState extends State<LocationPickerDemo> {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: AwesomeLocationPicker(
+        onChanged: (country, state, city) {
+          // Callback triggered when user selects or changes a location
+          print('Selected Country: ${country?.name}');
+          print('Selected State: ${state?.name}');
+          print('Selected City: ${city?.name}');
+        },
+        textStyle: const TextStyle(
+          fontSize: 16,
+          color: Colors.black87,
+        ),
+        showInSingleLine: false, // false = stacked dropdowns, true = inline dropdowns
+      ),
+    );
+  }
+}

@@ -105,7 +105,7 @@ class _AwesomeLocationPickerState extends State<AwesomeLocationPicker> {
           hint: 'Country',
           value: selectedCountry,
           items: countries,
-          labelBuilder: (c) => "${c.emoji} ${c.name}",
+          labelBuilder: (c) => c.name,
           onChanged: (val) {
             selectedCountry = val;
             if (val != null) fetchStates(val.id);

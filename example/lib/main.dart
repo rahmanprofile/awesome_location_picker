@@ -1,5 +1,5 @@
 import 'package:awesome_location_picker/awesome_location_picker.dart';
-import 'package:awesome_location_picker/widget/awesome_location_widget.dart';
+import 'package:awesome_location_picker/widget/awesome_location_picker.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -36,7 +36,7 @@ class Home extends StatelessWidget {
         onChanged: (country, state, city) {
           print("Selected: ${country?.name}, ${state?.name}, ${city?.name}");
         },
-        showInSingleLine: true,
+        showInSingleLine: false,
       ),
     );
   }
