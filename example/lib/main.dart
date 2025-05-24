@@ -34,7 +34,7 @@ class Home extends StatelessWidget {
       ),
       body: AwesomeLocationPicker(
         onChanged: (country, state, city) {
-          print("Selected: ${country?.name}, ${state?.name}, ${city?.name}");
+          debugPrint("Selected: ${country?.name}, ${state?.name}, ${city?.name}");
         },
         showInSingleLine: false,
       ),

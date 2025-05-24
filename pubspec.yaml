@@ -1,16 +1,17 @@
 name: awesome_location_picker
 description: "A Flutter package to select Country, State, and City with cascading dropdowns."
-version: 0.0.1
+version: 0.0.4
+license: MIT
 homepage: https://github.com/rahmanprofile/awesome_location_picker
 
 environment:
-  sdk: ">=3.7.2 <4.0.0"
+  sdk: ">=3.0.0 <4.0.0"
   flutter: ">=1.17.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  http: ^0.13.0   # <-- Add a version constraint here
+  http: ^1.4.0
 
 dev_dependencies:
   flutter_test:
