@@ -24,7 +24,7 @@ class RequestProvider {
   ///
   /// Returns a `Future<List<AwesomeCountry>>` that completes with the list of countries.
   /// Throws an Exception if the request fails or JSON parsing fails.
-  Future<List<AwesomeCountry>> fetchCountries() async {
+  Future<List<Country>> fetchCountries() async {
     try {
       // Make the GET HTTP request to the countries endpoint
       final response = await http.get(
@@ -43,7 +43,7 @@ class RequestProvider {
         final List data = json.decode(response.body)['data'];
 
         // Map each JSON object in the list to an AwesomeCountry instance
-        return data.map((e) => AwesomeCountry.fromJson(e)).toList();
+        return data.map((e) => Country.fromJson(e)).toList();
       } else {
         // If server returned an error status, throw an exception with message
         throw Exception('Failed to load countries');
@@ -62,7 +62,7 @@ class RequestProvider {
   ///
   /// Returns a `Future<List<AwesomeState>>` that completes with the list of states.
   /// Throws an Exception if the request fails.
-  Future<List<AwesomeState>> fetchStates(int countryId) async {
+  Future<List<States>> fetchStates(int countryId) async {
     // Make the GET HTTP request to the states endpoint with countryId path parameter
     final response = await http.get(
       Uri.parse('$baseUrl/states/$countryId'), // Construct URL with countryId
@@ -77,7 +77,7 @@ class RequestProvider {
     if (response.statusCode == 200) {
       // Parse JSON and convert list to model objects
       final List data = json.decode(response.body)['data'];
-      return data.map((e) => AwesomeState.fromJson(e)).toList();
+      return data.map((e) => States.fromJson(e)).toList();
     } else {
       // Throw error if response is not successful
       throw Exception('Failed to load states');
@@ -92,7 +92,7 @@ class RequestProvider {
   ///
   /// Returns a `Future<List<AwesomeCity>>` that completes with the list of cities.
   /// Throws an Exception if the request fails.
-  Future<List<AwesomeCity>> fetchCities(int stateId) async {
+  Future<List<Cities>> fetchCities(int stateId) async {
     // Make GET request to cities endpoint with stateId path parameter
     final response = await http.get(
       Uri.parse('$baseUrl/cities/$stateId'),
@@ -107,7 +107,7 @@ class RequestProvider {
     if (response.statusCode == 200) {
       // Decode JSON and convert list to AwesomeCity instances
       final List data = json.decode(response.body)['data'];
-      return data.map((e) => AwesomeCity.fromJson(e)).toList();
+      return data.map((e) => Cities.fromJson(e)).toList();
     } else {
       // Throw error if the request failed
       throw Exception('Failed to load cities');

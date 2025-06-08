@@ -1,11 +1,11 @@
-class AwesomeCity {
+class Cities {
   final int id;
   final String name;
   final int stateId;
   final DateTime createdAt;
   final DateTime updatedAt;
 
-  AwesomeCity({
+  Cities({
     required this.id,
     required this.name,
     required this.stateId,
@@ -13,8 +13,8 @@ class AwesomeCity {
     required this.updatedAt,
   });
 
-  factory AwesomeCity.fromJson(Map<String, dynamic> json) {
-    return AwesomeCity(
+  factory Cities.fromJson(Map<String, dynamic> json) {
+    return Cities(
       id: json['id'],
       name: json['name'],
       stateId: json['state_id'],
@@ -25,7 +25,7 @@ class AwesomeCity {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is AwesomeCity &&
+      other is Cities &&
           runtimeType == other.runtimeType &&
           id == other.id;
   @override

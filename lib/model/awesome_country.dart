@@ -1,4 +1,4 @@
-class AwesomeCountry {
+class Country {
   final int id;
   final String name;
   final String emoji;
@@ -6,7 +6,7 @@ class AwesomeCountry {
   final DateTime createdAt;
   final DateTime updatedAt;
 
-  AwesomeCountry({
+  Country({
     required this.id,
     required this.name,
     required this.emoji,
@@ -15,8 +15,8 @@ class AwesomeCountry {
     required this.updatedAt,
   });
 
-  factory AwesomeCountry.fromJson(Map<String, dynamic> json) {
-    return AwesomeCountry(
+  factory Country.fromJson(Map<String, dynamic> json) {
+    return Country(
       id: json['id'],
       name: json['name'],
       emoji: json['emoji'],

@@ -1,11 +1,11 @@
-class AwesomeState {
+class States {
   final int id;
   final String name;
   final int countryId;
   final DateTime createdAt;
   final DateTime updatedAt;
 
-  AwesomeState({
+  States({
     required this.id,
     required this.name,
     required this.countryId,
@@ -13,8 +13,8 @@ class AwesomeState {
     required this.updatedAt,
   });
 
-  factory AwesomeState.fromJson(Map<String, dynamic> json) {
-    return AwesomeState(
+  factory States.fromJson(Map<String, dynamic> json) {
+    return States(
       id: json['id'],
       name: json['name'],
       countryId: json['country_id'],

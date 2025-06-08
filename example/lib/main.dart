@@ -1,5 +1,4 @@
 import 'package:awesome_location_picker/awesome_location_picker.dart';
-import 'package:awesome_location_picker/widget/awesome_location_picker.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -22,21 +21,20 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
 class Home extends StatelessWidget {
   const Home({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Test"),
-      ),
+      appBar: AppBar(title: Text("Awesome Location Picker")),
       body: AwesomeLocationPicker(
         onChanged: (country, state, city) {
-          debugPrint("Selected: ${country?.name}, ${state?.name}, ${city?.name}");
+          debugPrint(
+            'Selected fields are :- ${country.name}, ${state.name}, ${city.name}',
+          );
         },
-        showInSingleLine: false,
+        borderColor: Colors.black54,
       ),
     );
   }

@@ -24,7 +24,7 @@ import '../service/request_provider.dart';
 class AwesomeLocationPicker extends StatefulWidget {
   /// Callback that gets triggered whenever the selection changes.
   /// It provides the currently selected country, state, and city as parameters.
-  final Function(AwesomeCountry?, AwesomeState?, AwesomeCity?)? onChanged;
+  final Function(Country, States, Cities) onChanged;
 
   /// Optional styling to be applied on all dropdown text items.
   final TextStyle? textStyle;
@@ -43,8 +43,8 @@ class AwesomeLocationPicker extends StatefulWidget {
   /// [showInSingleLine] toggles between horizontal and vertical layouts.
   const AwesomeLocationPicker({
     super.key,
-    this.onChanged,
-    this.borderColor = Colors.black54,
+    required this.onChanged,
+    required this.borderColor,
     this.textStyle,
     this.showInSingleLine = false,
   });
@@ -55,22 +55,22 @@ class AwesomeLocationPicker extends StatefulWidget {
 
 class _AwesomeLocationPickerState extends State<AwesomeLocationPicker> {
   /// List holding fetched countries, initially empty.
-  List<AwesomeCountry> countries = [];
+  List<Country> countries = [];
 
   /// List holding fetched states for selected country, initially empty.
-  List<AwesomeState> states = [];
+  List<States> states = [];
 
   /// List holding fetched cities for selected state, initially empty.
-  List<AwesomeCity> cities = [];
+  List<Cities> cities = [];
 
   /// Currently selected country, null if none selected yet.
-  AwesomeCountry? selectedCountry;
+  Country? selectedCountry;
 
   /// Currently selected state, null if none selected yet.
-  AwesomeState? selectedState;
+  States? selectedState;
 
   /// Currently selected city, null if none selected yet.
-  AwesomeCity? selectedCity;
+  Cities? selectedCity;
 
   /// Loading flag indicating whether data is currently being fetched.
   /// When true, shows a progress indicator instead of dropdowns.
@@ -170,8 +170,7 @@ class _AwesomeLocationPickerState extends State<AwesomeLocationPicker> {
 
       style: widget.textStyle,
       isExpanded: true,
-      items: items
-          .map((e) => DropdownMenuItem(
+      items: items.map((e) => DropdownMenuItem(
                 value: e,
                 child: Text(labelBuilder(e),
                     maxLines: 1, overflow: TextOverflow.ellipsis),
@@ -179,7 +178,7 @@ class _AwesomeLocationPickerState extends State<AwesomeLocationPicker> {
           .toList(),
       onChanged: (val) {
         onChanged(val);
-        widget.onChanged?.call(selectedCountry, selectedState, selectedCity);
+        widget.onChanged.call(selectedCountry!, selectedState!, selectedCity!);
       },
     );
   }
@@ -199,7 +198,7 @@ class _AwesomeLocationPickerState extends State<AwesomeLocationPicker> {
       return Row(
         children: [
           Expanded(
-            child: _buildDropdown<AwesomeCountry>(
+            child: _buildDropdown<Country>(
               hint: 'Country',
               value: selectedCountry,
               items: countries,
@@ -212,7 +211,7 @@ class _AwesomeLocationPickerState extends State<AwesomeLocationPicker> {
           ),
           const SizedBox(width: 8),
           Expanded(
-            child: _buildDropdown<AwesomeState>(
+            child: _buildDropdown<States>(
               hint: 'State',
               value: selectedState,
               items: states,
@@ -225,7 +224,7 @@ class _AwesomeLocationPickerState extends State<AwesomeLocationPicker> {
           ),
           const SizedBox(width: 8),
           Expanded(
-            child: _buildDropdown<AwesomeCity>(
+            child: _buildDropdown<Cities>(
               hint: 'City',
               value: selectedCity,
               items: cities,
@@ -241,7 +240,7 @@ class _AwesomeLocationPickerState extends State<AwesomeLocationPicker> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           const SizedBox(height: 8),
-          _buildDropdown<AwesomeCountry>(
+          _buildDropdown<Country>(
             hint: 'Select Country',
             value: selectedCountry,
             items: countries,
@@ -252,7 +251,7 @@ class _AwesomeLocationPickerState extends State<AwesomeLocationPicker> {
             },
           ),
           const SizedBox(height: 12),
-          _buildDropdown<AwesomeState>(
+          _buildDropdown<States>(
             hint: 'Select State',
             value: selectedState,
             items: states,
@@ -263,7 +262,7 @@ class _AwesomeLocationPickerState extends State<AwesomeLocationPicker> {
             },
           ),
           const SizedBox(height: 12),
-          _buildDropdown<AwesomeCity>(
+          _buildDropdown<Cities>(
             hint: 'Select City',
             value: selectedCity,
             items: cities,
