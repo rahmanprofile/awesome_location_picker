@@ -170,7 +170,8 @@ class _AwesomeLocationPickerState extends State<AwesomeLocationPicker> {
 
       style: widget.textStyle,
       isExpanded: true,
-      items: items.map((e) => DropdownMenuItem(
+      items: items
+          .map((e) => DropdownMenuItem(
                 value: e,
                 child: Text(labelBuilder(e),
                     maxLines: 1, overflow: TextOverflow.ellipsis),

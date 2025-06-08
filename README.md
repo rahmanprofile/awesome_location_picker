@@ -28,4 +28,4 @@ Add this to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  awesome_location_picker: ^1.0.0
+  awesome_location_picker: ^0.0.6
